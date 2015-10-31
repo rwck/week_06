@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+$myfont-family: fantasy;
+
+
+
+th {
+  font-family: fantasy;
+}
+
+td {
+  font-family: cursive;
+}
+
+.main {
+  border: 1px dotted pink;
+  margin: 20px;
+  padding: 20px;
+}
