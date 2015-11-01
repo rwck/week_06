@@ -34,7 +34,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user["picture"] = link_to_google_image( @user["picture"])
+    pp "user picture" + @user["picture"]
+    if @user["picture"] != "" &&  @user["picture"].starts_with?['https://drive.google.com/open?id=']
+      @user["picture"] = link_to_google_image( @user["picture"])
+    end
 
     respond_to do |format|
       if @user.save
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
     end
     pp @user
     pp picture_param
-    pp link_to_google_image(picture_param["picture"])
+    # pp link_to_google_image(picture_param["picture"])
   end
 
   # PATCH/PUT /users/1

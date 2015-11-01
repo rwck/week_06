@@ -169,3 +169,21 @@ You can also do
 or
 
 `@import 'partials/**/*'`
+
+
+
+
+## How to use Google fonts in Rails
+
+
+In applicaition.html.erb
+
+At the top use the `stylesheet_link_tag`
+
+```
+<%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Raleway:400,600|Bitter:400,700', media: 'all' %>
+```
+
+
+
+# Model for Issue

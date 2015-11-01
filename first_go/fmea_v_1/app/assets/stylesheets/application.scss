@@ -1,3 +1,7 @@
 @import 'partials/reset/reset';
 @import 'partials/*';
 @import 'partials/dev/*';
+
+* {
+  border: 1px dotted pink;
+}

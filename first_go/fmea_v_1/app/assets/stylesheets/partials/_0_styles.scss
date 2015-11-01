@@ -1,17 +1,75 @@
+$my-heading-font-family: 'Bitter', serif;
+$my-base-font-family: 'Raleway', sans-serif;
+
 * {
   box-sizing: border-box;
 }
 
-$myfont-family: fantasy;
+@mixin my-box-shadow {
+  background: #D8D8D8;
+  border: 1px solid #979797;
+  box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.50);
+}
 
+@mixin heading-style {
+  font-style: $my-base-font-family;
+  font-size: 1em;
+  padding: 2em;
+}
 
+@mixin basic-style {
+  font-style: $my-base-font-family;
+  font-size: 1em;
+  padding: 2em;
+}
+
+p {
+  font-family: $my-base-font-family;
+}
+
+// body {
+//   @include basic-style;
+//   font-style: $my-base-font-family;
+// }
+//
+// p {
+//   @extend body;
+//   font-style: $my-base-font-family;
+//
+// }
+
+.basic-style {
+  @include basic-style;
+}
+
+p {
+}
 
 th {
-  font-family: fantasy;
+  font-family: $my-heading-font-family;
 }
 
 td {
-  font-family: cursive;
+  @extend .basic-style;
+  font-family: $my-base-font-family
+
+}
+
+h1 {
+  font-family: $my-heading-font-family;
+  font-size: 1.5em;
+  padding: 0.5em 0;
+
+}
+
+a {
+  font-family: $my-base-font-family;
+}
+
+.link {
+  @extend .basic-style;
+  padding: 0;
+  margin: 1.5em 0;
 }
 
 .main {

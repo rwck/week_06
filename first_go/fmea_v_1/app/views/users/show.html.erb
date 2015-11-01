@@ -1,6 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<div>
+
+  <p>
+    <!-- <strong>Firstname:</strong> -->
+    <%= @user.firstname %>
+
+    <!-- <strong>Lastname:</strong> -->
+    <%= @user.lastname %>
+    |
+
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <!-- <strong>Email:</strong> -->
+
+  </p>
+  <div class="show-page-image">
+    <%= image_tag(@user.picture, :class => "person_picture") %>
+  </div>
+  <p>
+    <!-- <strong>Picture:</strong> -->
+
+  </p>
+
+  <!-- <p>
   <strong>Firstname:</strong>
   <%= @user.firstname %>
 </p>
@@ -8,9 +33,9 @@
 <p>
   <strong>Lastname:</strong>
   <%= @user.lastname %>
-</p>
+</p> -->
 
-<p>
+  <!-- <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
@@ -18,13 +43,19 @@
 <p>
   <strong>Picture:</strong>
   <%= image_tag(@user.picture, :class => "person_picture") %>
-</p>
+</p> -->
 
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
+  <% if @user.phone != "" %>
+  <p>
+    <strong>Phone:</strong>
+    <%= @user.phone %>
+  </p>
+  <% end %>
+  <div class="link">
+    <%= link_to 'Edit', edit_user_path(@user) %>
+    |
+    <%= link_to 'Back', users_path %>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
-|
-<%= link_to 'Back', users_path %>
+  </div>
+
+</div>
