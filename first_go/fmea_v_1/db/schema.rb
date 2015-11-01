@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031010744) do
+ActiveRecord::Schema.define(version: 20151101223443) do
+
+  create_table "issues", force: :cascade do |t|
+    t.string   "item"
+    t.string   "function"
+    t.string   "failure"
+    t.string   "effect_of_failure"
+    t.string   "cause_of_failure"
+    t.string   "current_controls"
+    t.string   "recommended_actions"
+    t.integer  "probability_estimate"
+    t.integer  "severity_estimate"
+    t.integer  "detection_indicators"
+    t.integer  "detection_dormancy_period"
+    t.integer  "risk_level"
+    t.string   "further_investigation"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "issues", ["user_id"], name: "index_issues_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
