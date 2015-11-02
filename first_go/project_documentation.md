@@ -184,6 +184,48 @@ At the top use the `stylesheet_link_tag`
 <%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Raleway:400,600|Bitter:400,700', media: 'all' %>
 ```
 
+# Model for Project
+
+```
+rails generate scaffold project name user:belongs_to
+```
 
 
 # Model for Issue
+
+```
+rails generate scaffold issue item function failure effect_of_failure cause_of_failure current_controls recommended_actions probability_estimate:integer severity_estimate:integer detection_indicators:integer detection_dormancy_period:integer risk_level:integer further_investigation user:belongs_to
+```
+
+
+## Command to add 'Problem' reference to existing 'Issue' table
+
+```
+rails generate migration AddProblemRefToIssues problem:references
+```
+
+## The model for 'Problem'
+
+```
+```
+
+## Drop table from database
+
+```
+drop_table :issues
+```
+
+
+
+## Add connection
+```
+add_reference :issues, :problem, index: true, foreign_key: true
+```
+
+
+
+
+## Remove connection
+```
+add_reference :issues, :problem, index: true, foreign_key: true
+```
