@@ -18,7 +18,7 @@
       <th>Detection dormancy period</th>
       <th>Risk level</th>
       <th>Further investigation</th>
-      <th>User</th>
+      <th>Project</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -39,7 +39,7 @@
         <td><%= issue.detection_dormancy_period %></td>
         <td><%= issue.risk_level %></td>
         <td><%= issue.further_investigation %></td>
-        <td><%= issue.user %></td>
+        <td><%= issue.project %></td>
         <td><%= link_to 'Show', issue %></td>
         <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
         <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>

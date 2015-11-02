@@ -18,7 +18,7 @@ class IssuesControllerTest < ActionController::TestCase
 
   test "should create issue" do
     assert_difference('Issue.count') do
-      post :create, issue: { cause_of_failure: @issue.cause_of_failure, current_controls: @issue.current_controls, detection_dormancy_period: @issue.detection_dormancy_period, detection_indicators: @issue.detection_indicators, effect_of_failure: @issue.effect_of_failure, failure: @issue.failure, function: @issue.function, further_investigation: @issue.further_investigation, item: @issue.item, probability_estimate: @issue.probability_estimate, recommended_actions: @issue.recommended_actions, risk_level: @issue.risk_level, severity_estimate: @issue.severity_estimate, user_id: @issue.user_id }
+      post :create, issue: { cause_of_failure: @issue.cause_of_failure, current_controls: @issue.current_controls, detection_dormancy_period: @issue.detection_dormancy_period, detection_indicators: @issue.detection_indicators, effect_of_failure: @issue.effect_of_failure, failure: @issue.failure, function: @issue.function, further_investigation: @issue.further_investigation, item: @issue.item, probability_estimate: @issue.probability_estimate, project_id: @issue.project_id, recommended_actions: @issue.recommended_actions, risk_level: @issue.risk_level, severity_estimate: @issue.severity_estimate }
     end
 
     assert_redirected_to issue_path(assigns(:issue))
@@ -35,7 +35,7 @@ class IssuesControllerTest < ActionController::TestCase
   end
 
   test "should update issue" do
-    patch :update, id: @issue, issue: { cause_of_failure: @issue.cause_of_failure, current_controls: @issue.current_controls, detection_dormancy_period: @issue.detection_dormancy_period, detection_indicators: @issue.detection_indicators, effect_of_failure: @issue.effect_of_failure, failure: @issue.failure, function: @issue.function, further_investigation: @issue.further_investigation, item: @issue.item, probability_estimate: @issue.probability_estimate, recommended_actions: @issue.recommended_actions, risk_level: @issue.risk_level, severity_estimate: @issue.severity_estimate, user_id: @issue.user_id }
+    patch :update, id: @issue, issue: { cause_of_failure: @issue.cause_of_failure, current_controls: @issue.current_controls, detection_dormancy_period: @issue.detection_dormancy_period, detection_indicators: @issue.detection_indicators, effect_of_failure: @issue.effect_of_failure, failure: @issue.failure, function: @issue.function, further_investigation: @issue.further_investigation, item: @issue.item, probability_estimate: @issue.probability_estimate, project_id: @issue.project_id, recommended_actions: @issue.recommended_actions, risk_level: @issue.risk_level, severity_estimate: @issue.severity_estimate }
     assert_redirected_to issue_path(assigns(:issue))
   end
 

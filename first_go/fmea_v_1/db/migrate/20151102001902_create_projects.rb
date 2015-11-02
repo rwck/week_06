@@ -1,8 +1,7 @@
-class CreateProblems < ActiveRecord::Migration
+class CreateProjects < ActiveRecord::Migration
   def change
-    create_table :problems do |t|
+    create_table :projects do |t|
       t.string :name
-      t.has_many :issue
       t.belongs_to :user, index: true, foreign_key: true
 
       t.timestamps null: false

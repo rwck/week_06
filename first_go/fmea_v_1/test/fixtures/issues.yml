@@ -14,7 +14,7 @@ one:
   detection_dormancy_period: 1
   risk_level: 1
   further_investigation: MyString
-  user_id: 
+  project_id: 
 
 two:
   item: MyString
@@ -30,4 +30,4 @@ two:
   detection_dormancy_period: 1
   risk_level: 1
   further_investigation: MyString
-  user_id: 
+  project_id: 

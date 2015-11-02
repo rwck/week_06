@@ -14,7 +14,7 @@ class CreateIssues < ActiveRecord::Migration
       t.integer :detection_dormancy_period
       t.integer :risk_level
       t.string :further_investigation
-      t.belongs_to :user, index: true, foreign_key: true
+      t.belongs_to :project, index: true, foreign_key: true
 
       t.timestamps null: false
     end

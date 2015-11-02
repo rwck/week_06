@@ -69,6 +69,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:item, :function, :failure, :effect_of_failure, :cause_of_failure, :current_controls, :recommended_actions, :probability_estimate, :severity_estimate, :detection_indicators, :detection_dormancy_period, :risk_level, :further_investigation, :user_id)
+      params.require(:issue).permit(:item, :function, :failure, :effect_of_failure, :cause_of_failure, :current_controls, :recommended_actions, :probability_estimate, :severity_estimate, :detection_indicators, :detection_dormancy_period, :risk_level, :further_investigation, :project_id)
     end
 end

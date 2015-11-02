@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :problems
   resources :issues
+  resources :projects
   resources :users
   root 'users#index'
   
