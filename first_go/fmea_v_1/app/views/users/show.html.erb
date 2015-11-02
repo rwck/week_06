@@ -20,6 +20,17 @@
   <div class="show-page-image">
     <%= image_tag(@user.picture, :class => "person_picture") %>
   </div>
+  <div class="projects">
+    <% @projects.each do |proj| %>
+    <ul>
+      <li>
+        <%= link_to "#{proj.name}", project_path(proj.id) %>
+        <%= proj.name %>
+      </li>
+    </ul>
+
+    <% end %>
+  </div>
   <p>
     <!-- <strong>Picture:</strong> -->
 

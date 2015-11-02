@@ -3,7 +3,7 @@
 <h1>Listing Issues</h1>
 
 <table>
-  <thead>
+  <!-- <thead>
     <tr>
       <th>Item</th>
       <th>Function</th>
@@ -21,33 +21,99 @@
       <th>Project</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+  </thead> -->
 
-  <tbody>
-    <% @issues.each do |issue| %>
+  <thead>
+    <tbody>
+      <% @issues.each do |issue| %>
+      <th>Item</th>
+      <td><%= issue.item %></td>
+
       <tr>
-        <td><%= issue.item %></td>
+        <th>Function</th>
         <td><%= issue.function %></td>
+      </tr>
+      <tr>
+        <th>Failure</th>
         <td><%= issue.failure %></td>
+      </tr>
+
+      <tr>
+        <th>Effect of failure</th>
         <td><%= issue.effect_of_failure %></td>
+      </tr>
+
+      <tr>
+        <th>Cause of failure</th>
         <td><%= issue.cause_of_failure %></td>
+
+      </tr>
+
+      <tr>
+        <th>Current controls</th>
+
         <td><%= issue.current_controls %></td>
+
+      </tr>
+
+      <tr>
+        <th>Recommended actions</th>
+
         <td><%= issue.recommended_actions %></td>
+      </tr>
+
+      <tr>
+        <th>Probability estimate</th>
         <td><%= issue.probability_estimate %></td>
+
+      </tr>
+
+      <tr>
+        <th>Severity estimate</th>
+
         <td><%= issue.severity_estimate %></td>
+      </tr>
+
+      <tr>
+        <th>Detection indicators</th>
+
         <td><%= issue.detection_indicators %></td>
+      </tr>
+
+      <tr>
+        <th>Detection dormancy period</th>
+
         <td><%= issue.detection_dormancy_period %></td>
+      </tr>
+
+      <tr>
+        <th>Risk level</th>
+
         <td><%= issue.risk_level %></td>
+      </tr>
+
+      <tr>
+        <th>Further investigation</th>
         <td><%= issue.further_investigation %></td>
+      </tr>
+      <tr>
+        <th>Project</th>
+
         <td><%= issue.project %></td>
+
+      </tr>
+
+      <tr>
+        <th colspan="3"></th>
         <td><%= link_to 'Show', issue %></td>
         <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
         <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Issue', new_issue_path %>
+  <%= link_to 'New Issue', new_issue_path %>

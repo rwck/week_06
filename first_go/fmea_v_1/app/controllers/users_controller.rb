@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = set_user
+    @projects = @user.projects
+    pp @user.firstname
+    pp @projects
   end
 
   # GET /users/new

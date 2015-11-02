@@ -5,6 +5,63 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @users = User.all
+
+    @users.each do |u_name|
+      puts "Users name is #{u_name.firstname} #{u_name.lastname} "
+      puts @users
+
+    end
+
+    @projects.each do |proj|
+      puts 'Project name is ' + proj.name
+      puts 'Project user ID ' +
+        proj.user_id.to_s
+
+      # @user_name = @users.where("id == #{proj.user_id}")
+      # puts "User name is " + @user_name.name.to_s
+      @user_name = @users.find(proj.user_id).firstname + " " + @users.find(proj.user_id).lastname
+      puts "Blob" + @user_name.to_s
+      puts "@user_name is " + @user_name.to_s
+
+    end
+
+
+    @users.each do |blob|
+      puts "User ID is #{blob.id}"
+      # "&&&&&& Blob is: #{blob.id}"
+    end
+
+    # @test_projects = Project.find(1).id
+    @projects.each do |proj|
+      puts 'Project name is ' + proj.name
+      puts 'Project user ID ' +
+        proj.user_id.to_s
+
+      # @user_name = @users.where("id == #{proj.user_id}")
+      # puts "User name is " + @user_name.name.to_s
+      # @user_name = @users.find(proj.user_id).firstname + " " + @users.find(proj.user_id).lastname
+      # puts "Blob" + @user_name.to_s
+      # puts "@user_name is " + @user_name.to_s
+
+
+    end
+
+    @all_users = User.all
+
+    @all_users.each do |u_name|
+      puts "Users name is #{u_name.firstname} #{u_name.lastname} "
+      puts
+
+      # puts @all_users
+    end
+
+    # @user = Project.user_id
+    # puts "User " + @user
+
+    puts ' *** Projects are projects ' + @projects.to_s
+
+    # pp "test Projects" + @test_projects.to_s
   end
 
   # GET /projects/1
@@ -15,6 +72,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @users = User.all
   end
 
   # GET /projects/1/edit
@@ -62,13 +120,14 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_params
+    params.require(:project).permit(:name, :user_id)
+  end
 end

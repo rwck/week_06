@@ -6,9 +6,19 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>User Object ID:</strong>
   <%= @project.user %>
+  <%= @project.user.firstname %>
+  <%= @project.user.lastname %>
+
+</p>
+<p>
+  <strong>User Name:</strong>
+  <%= @project.user.firstname %>
+  <%= @project.user.lastname %>
+
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) %>
+|
 <%= link_to 'Back', projects_path %>

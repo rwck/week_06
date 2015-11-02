@@ -1,25 +1,53 @@
 <%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<% if @project.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@project.errors.count, "error") %>
+    prohibited this project from being saved:</h2>
 
-      <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <ul>
+    <% @project.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :user_id %><br>
+  <%= f.text_field :user_id %>
+  <!-- <% if false %> -->
+  <!-- <% end %> -->
+
+  <!-- , :id, :name, include_blank: true)  -->
+
+  <% pp "params are " + params.to_s %>
+</div>
+
+<div class="field">
+  <%= f.label :user_id %><br>
+
+  <% if false %>
+  <%= f.select :user_id %>
+  <% end %>
+  <br>
+  <% @users.each do |user| %>
+  <%= user.firstname %>
+  <%= user.id %>
+
+  <%= f.collection_select :user, user.id, User.all, :id, include_blank: true %>
+
+  <%= options_from_collection_for_select(User.all, :id, :firstname) %>
+
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% pp "params are " + params.to_s %>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

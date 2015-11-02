@@ -11,6 +11,13 @@
       <%= csrf_meta_tags %>
 </head>
 
+<nav>
+  <%= link_to "Users", users_path %>
+  <%= link_to "Issues", issues_path %>
+  <%= link_to "Projects", projects_path %>
+  <%= link_to "New Project", new_project_path %>
+</nav>
+
 <body>
   <div class="main basic-style">
     <%= yield %>
