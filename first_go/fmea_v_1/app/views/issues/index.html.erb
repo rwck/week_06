@@ -99,7 +99,7 @@
       <tr>
         <th>Project</th>
 
-        <td><%= issue.project %></td>
+        <td><%= issue.project.name %></td>
 
       </tr>
 
@@ -115,5 +115,9 @@
   </table>
 
   <br>
+
+  <p>
+    <%= @my_variable  %>
+  </p>
 
   <%= link_to 'New Issue', new_issue_path %>

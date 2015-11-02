@@ -16,33 +16,45 @@
   <%= f.label :name %><br>
   <%= f.text_field :name %>
 </div>
+
+<% if false %>
+
 <div class="field">
+
   <%= f.label :user_id %><br>
   <%= f.text_field :user_id %>
-  <!-- <% if false %> -->
-  <!-- <% end %> -->
-
-  <!-- , :id, :name, include_blank: true)  -->
 
   <% pp "params are " + params.to_s %>
 </div>
+
+<% end %>
 
 <div class="field">
   <%= f.label :user_id %><br>
 
   <% if false %>
-  <%= f.select :user_id %>
+  <%= f.text_field :user_id %>
+
   <% end %>
-  <br>
+
+  <% if false %>
+  <%= f.collection_select :user, @users.user_id, User.all, :id, include_blank: true %>
+  <% end %>
+
+  <% if false %>
   <% @users.each do |user| %>
   <%= user.firstname %>
   <%= user.id %>
-
-  <%= f.collection_select :user, user.id, User.all, :id, include_blank: true %>
-
-  <%= options_from_collection_for_select(User.all, :id, :firstname) %>
-
   <% end %>
+
+  <%= @users %>
+  <%= options_from_collection_for_select(User.all, :id, :firstname) %>
+  <% end %>
+
+  <div>
+    <%= select_tag "project[user_id]", options_from_collection_for_select(@users, "id", "firstname", include_blank: true)  %>
+    <% pp "lajsdklfjaslkdjf df " + params.to_s %>
+  </div>
 
   <% pp "params are " + params.to_s %>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102002210) do
+ActiveRecord::Schema.define(version: 20151102101002) do
 
   create_table "issues", force: :cascade do |t|
     t.string   "item"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20151102002210) do
     t.integer  "detection_dormancy_period"
     t.integer  "risk_level"
     t.string   "further_investigation"
-    t.integer  "project_id"
+    t.integer  "project_id",                null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20151102002210) do
   add_index "issues", ["project_id"], name: "index_issues_on_project_id"
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
+    t.string   "name",       null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20151102002210) do
     t.datetime "updated_at",      null: false
     t.string   "firstname"
     t.string   "lastname"
+    t.string   "full_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

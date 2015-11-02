@@ -1,6 +1,8 @@
-<h1>Editing Issue</h1>
+<h1>Editing Issue:
+  <%= @issue.item %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @issue %> |
+<%= link_to 'Show', @issue %>
+|
 <%= link_to 'Back', issues_path %>

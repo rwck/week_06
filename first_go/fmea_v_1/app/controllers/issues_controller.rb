@@ -5,11 +5,25 @@ class IssuesController < ApplicationController
   # GET /issues.json
   def index
     @issues = Issue.all
-  end
+    @issues.each do |my_issue|
+      sev = my_issue.severity_estimate
+      detect = my_issue.detection_indicators
+      dormancy = my_issue.detection_dormancy_period
+      riskvalue = sev * detect * dormancy
+      my_issue.update_column :risk_level, riskvalue
+    end
+    end
+
+  # @my_variable = @issues.find(1).severity_estimate * @issues.find(1).detection_indicators * @issues.find(1).detection_dormancy_period
+  # @issues.find(1).update_column :risk_level, @my_variable
+  # # @my_variable.update_column :
 
   # GET /issues/1
   # GET /issues/1.json
   def show
+    @issues = Issue.all
+    @users = User.all
+    @projects = Project.all
   end
 
   # GET /issues/new
@@ -19,6 +33,7 @@ class IssuesController < ApplicationController
 
   # GET /issues/1/edit
   def edit
+    @issue = Issue.find(params["id"])
   end
 
   # POST /issues
@@ -62,13 +77,14 @@ class IssuesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def issue_params
-      params.require(:issue).permit(:item, :function, :failure, :effect_of_failure, :cause_of_failure, :current_controls, :recommended_actions, :probability_estimate, :severity_estimate, :detection_indicators, :detection_dormancy_period, :risk_level, :further_investigation, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def issue_params
+    params.require(:issue).permit(:item, :function, :failure, :effect_of_failure, :cause_of_failure, :current_controls, :recommended_actions, :probability_estimate, :severity_estimate, :detection_indicators, :detection_dormancy_period, :risk_level, :further_investigation, :project_id)
+  end
 end

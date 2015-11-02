@@ -11,16 +11,12 @@
     </tr>
   </thead>
 
-  <!-- @projects.each do |proj| puts 'Project name is ' + proj.name puts 'Project user ID ' + proj.user_id.to_s @user_name = @users.find(proj.user_id).firstname + " " + @users.find(proj.user_id).lastname puts "Blob" + @user_name.to_s puts "@user_name is " +
-  @user_name.to_s end -->
-
   <tbody>
     <% @projects.each do |project| %>
 
     <tr>
       <td><%= project.name %></td>
       <td><%= project.user.id %></td>
-      <!-- <td><%= @user_name %></td> -->
       <td>
         <%= @users.find(project.user_id).firstname %>
         <%= @users.find(project.user_id).lastname %>

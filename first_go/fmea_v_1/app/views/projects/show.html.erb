@@ -8,15 +8,22 @@
 <p>
   <strong>User Object ID:</strong>
   <%= @project.user %>
+  <% if false %>
   <%= @project.user.firstname %>
   <%= @project.user.lastname %>
+  <% end %>
 
 </p>
 <p>
   <strong>User Name:</strong>
   <%= @project.user.firstname %>
   <%= @project.user.lastname %>
+</p>
 
+<p>
+  <% if false %>
+  <%= @project.find(@project.user.id) %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %>

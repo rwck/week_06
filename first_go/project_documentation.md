@@ -229,3 +229,19 @@ add_reference :issues, :problem, index: true, foreign_key: true
 ```
 add_reference :issues, :problem, index: true, foreign_key: true
 ```
+
+
+
+Creating a relationship:
+
+You need to do this inside the model, not inside the migration.
+
+
+## Active Record
+
+`Project.where("user_id = 11")`
+
+
+### update column in code
+
+`.update_column :blob, <value>`
