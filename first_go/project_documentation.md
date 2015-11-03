@@ -328,5 +328,4 @@ The code above is telling rails what to do when it comes to sending email links 
 rails generate devise:views
 ```
 
-
 # Restart the Rails server after installing Devise. Otherwise you spend ages not understanding why none of it works.
