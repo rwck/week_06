@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -67,6 +68,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project_list = Issue.find_by project_id: @project
+    Issue.find_each do |issue|
+      pp issue[:item]
+    end
+    # pp @project_list[:item]
   end
 
   # GET /projects/new
@@ -126,6 +132,7 @@ class ProjectsController < ApplicationController
   def set_project
     @project = Project.find(params[:id])
   end
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params

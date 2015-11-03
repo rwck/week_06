@@ -38,8 +38,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    pp "user picture" + @user["picture"]
-    if @user["picture"] != "" &&  @user["picture"].starts_with?['https://drive.google.com/open?id=']
+    pp "user picture " + @user["picture"]
+    if @user["picture"] != "" &&  @user["picture"].starts_with?('https://drive.google.com/open?id=')
       @user["picture"] = link_to_google_image( @user["picture"])
     end
 

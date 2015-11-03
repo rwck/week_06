@@ -20,6 +20,29 @@
   <%= @project.user.lastname %>
 </p>
 
+<% if Issue.where("project_id": @project.id) != [] %>
+<h2>
+  Issues within
+  <%= @project.name %>
+</h2>
+<% else %>
+<h2>
+  Add some issues
+</h2>
+<% end %>
+
+<p>
+  <% Issue.where("project_id": @project.id).find_each do |issue| %>
+  <% if issue[:item] != "" %>
+
+  <p>
+    <%= issue[:item] %>
+  </p>
+  <% end %>
+  <% end %>
+
+</p>
+
 <p>
   <% if false %>
   <%= @project.find(@project.user.id) %>

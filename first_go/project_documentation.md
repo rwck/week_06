@@ -245,3 +245,45 @@ You need to do this inside the model, not inside the migration.
 ### update column in code
 
 `.update_column :blob, <value>`
+
+
+## heroku run rails console
+
+`heroku run rake db:migrate`
+
+`heroku run rails console`
+
+loads of other things like this : this is really really useful
+
+
+## Seed dump
+
+`gem 'seed_dump'`
+
+
+
+First, do
+
+`rake db:migrate`
+
+And then do:
+
+`rake db:seed:dump`
+
+
+
+Trying to send some info through along with a link...
+
+```
+link_to "Profile", profile_path(@profile.id, param1: 'value1', param2: 'value2'), method: :post
+s
+```
+
+
+## Get guard to work and check up, reload rails server on key file changes
+
+`bundle exec guard`
+
+## Active record find by cross reference
+
+`Issue.find_by project_id: 1`

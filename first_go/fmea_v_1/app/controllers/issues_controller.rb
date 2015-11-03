@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+  before_action :set_project
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
   # GET /issues
@@ -9,8 +10,10 @@ class IssuesController < ApplicationController
       sev = my_issue.severity_estimate
       detect = my_issue.detection_indicators
       dormancy = my_issue.detection_dormancy_period
-      riskvalue = sev * detect * dormancy
-      my_issue.update_column :risk_level, riskvalue
+      if sev && detect && dormancy
+        riskvalue = sev * detect * dormancy
+        my_issue.update_column :risk_level, riskvalue
+      end
     end
     end
 
@@ -28,22 +31,29 @@ class IssuesController < ApplicationController
 
   # GET /issues/new
   def new
-    @issue = Issue.new
+    @issue = @project.issues.build
+
+    #
+    # @issue = Issue.new
+    # @project_id = params["project_id"]
   end
 
   # GET /issues/1/edit
   def edit
-    @issue = Issue.find(params["id"])
+    @issue = Issue.find(params['id'])
   end
 
   # POST /issues
   # POST /issues.json
   def create
-    @issue = Issue.new(issue_params)
+    pp params
+    pp @project
+
+    @issue = @project.issues.build(issue_params)
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
+        format.html { redirect_to [@project, @issue], notice: 'Issue was successfully created.' }
         format.json { render :show, status: :created, location: @issue }
       else
         format.html { render :new }
@@ -80,7 +90,14 @@ class IssuesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_issue
-    @issue = Issue.find(params[:id])
+    @issue = @project.issues.find(params[:id]) if @project
+  end
+
+  def set_project
+    if params[:project_id]
+      @project =
+      Project.find(params[:project_id])
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
