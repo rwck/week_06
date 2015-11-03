@@ -4,6 +4,7 @@ gem 'bcrypt'
 gem 'pg'
 gem 'puma'
 gem 'seed_dump'
+gem 'devise'
 
 
 

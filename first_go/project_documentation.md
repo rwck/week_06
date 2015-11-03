@@ -55,7 +55,7 @@ and then
 
 ## Generate a scaffold to get started
 
-`rails generate scaffold user firstname lastname email:uniq password:digest firstname lastname picture phone`
+`rails generate scaffold user firstname lastname email:uniq password:digest picture phone`
 
 
 ## Create a migration for the database
@@ -194,8 +194,22 @@ rails generate scaffold project name user:belongs_to
 # Model for Issue
 
 ```
-rails generate scaffold issue item function failure effect_of_failure cause_of_failure current_controls recommended_actions probability_estimate:integer severity_estimate:integer detection_indicators:integer detection_dormancy_period:integer risk_level:integer further_investigation user:belongs_to
+rails generate scaffold issue item function failure effect_of_failure cause_of_failure current_controls recommended_actions probability_estimate:integer severity_estimate:integer detection_indicators:integer detection_dormancy_period:integer risk_level:integer further_investigation project:belongs_to --parent-user
 ```
+
+### Drop tables
+
+```
+class DroppingTables < ActiveRecord::Migration
+  def change
+    drop_table :issues
+    drop_table :projects
+  end
+end
+```
+
+
+
 
 
 ## Command to add 'Problem' reference to existing 'Issue' table
@@ -287,3 +301,32 @@ s
 ## Active record find by cross reference
 
 `Issue.find_by project_id: 1`
+
+
+# Devise
+
+`gem 'devise'`
+
+Then
+
+`rails g devise:install`
+
+`rails generate devise User`
+
+
+## In config/environments/development.rb do
+
+```
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+The code above is telling rails what to do when it comes to sending email links - where to put the link to, basically.
+
+
+# Updating devise views
+```
+rails generate devise:views
+```
+
+
+# Restart the Rails server after installing Devise. Otherwise you spend ages not understanding why none of it works.

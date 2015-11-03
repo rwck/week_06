@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+  before_action :set_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -133,6 +133,12 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def set_user
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      pp "Setting user. It is #{@user}"
+    end
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params

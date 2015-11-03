@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Practice</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Raleway:400,600|Bitter:400,700', media: 'all' %>
+
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+</head>
+
+<div class="big_nav opening">
+  <ul>
+    <li>
+      <%= link_to "New user session path", new_user_session_path %>
+
+    </li>
+    <li>
+      <%= link_to "User session path", user_session_path %>
+    </li>
+    <li>
+      <%= link_to "Destroy user session", destroy_user_session_path, method: :DELETE %>
+
+    </li>
+    <li>
+      <%= link_to "User password path",  user_password_path %>
+
+    </li>
+    <li>
+      <%= link_to "New user password path", new_user_password_path %>
+
+    </li>
+    <li>
+      <%= link_to "Edit user password path", edit_user_password_path %>
+
+    </li>
+    <li>
+      <%= link_to "Cancel User registration path",  cancel_user_registration_path %>
+
+    </li>
+    <li>
+      <%= link_to "User registration path", user_registration_path %>
+
+    </li>
+    <li>
+      <%= link_to "New user registration path", new_user_registration_path %>
+
+    </li>
+    <li>
+      <%= link_to "Edit user registration path", edit_user_registration_path %>
+
+    </li>
+    <li>
+
+    </li>
+
+
+  </ul>
+</div>
+
+
+<body>
+  <div class="opening">
+    <% if user_signed_in? %>
+      <h1>You're signed in</h1>
+      <p>
+        User email:
+        <%= current_user.email %>
+      </p>
+      <p>
+        User ID:
+        <%= current_user.id %>
+      </p>
+      <% end %>
+  </div>
+
+
+  <div>
+    <%= yield %>
+  </div>
+
+</body>
+
+</html>
