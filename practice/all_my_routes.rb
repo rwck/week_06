@@ -66,6 +66,7 @@ end
 # puts my_array
 
 words = %w(DELETE
+           Pattern
            PUT
            PATCH
            GET
@@ -99,11 +100,13 @@ my_array.delete_if { |x| words.include?(x) }
 pp words
 pp my_array
 
-my_array.each do |word|
-  word.insert(0, "link_to #{word} ")
+chunter = my_array.collect do |word|
+  '<li><%= link_to "' + word + '", ' + word + '_path %></li>'
 end
 
-puts my_array
+puts chunter
+
+# puts my_array
 
 # my_array.delete_if { | word | word.include?(words)}
 

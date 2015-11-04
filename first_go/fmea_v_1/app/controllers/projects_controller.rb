@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = @user.projects
     @users = User.all
 
     @users.each do |u_name|
@@ -68,17 +69,24 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project_list = Issue.find_by project_id: @project
-    Issue.find_each do |issue|
-      pp issue[:item]
-    end
+    @project = @user.projects.find(params[:id])
+
+
+
+    # @project_list = Issue.find_by project_id: @project
+    # Issue.find_each do |issue|
+    #   pp issue[:item]
+    # end
+
     # pp @project_list[:item]
   end
 
   # GET /projects/new
   def new
-    @project = Project.new
+    # @project = Project.new
     @users = User.all
+    @project = @user.projects.build
+
   end
 
   # GET /projects/1/edit
@@ -89,7 +97,11 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    # @issue = @project.issues.build(issue_params)
+    @project = @user.projects.build(project_params)
+
+
+    # @project = Project.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -130,14 +142,17 @@ class ProjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = Project.find(params[:id])
+    @project = @user.projects.find(params[:user_id]) if @project
   end
 
+
   def set_user
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      pp "Setting user. It is #{@user}"
-    end
+    # if params[:user_id]
+      # @user = User.find(params[:user_id])
+      @user = current_user
+      pp "^^^^^^^^^Setting user. It is #{@user.firstname}"
+      pp @project
+    # end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

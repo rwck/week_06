@@ -1,11 +1,13 @@
 class IssuesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_user
   before_action :set_project
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @issues = @user.issues
     @issues.each do |my_issue|
       sev = my_issue.severity_estimate
       detect = my_issue.detection_indicators
@@ -24,7 +26,10 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
-    @issues = Issue.all
+    @issues = @user.issues
+    @issue = set_issue
+
+    # @issues = Issue.all
     @users = User.all
     @projects = Project.all
   end
@@ -91,6 +96,15 @@ class IssuesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_issue
     @issue = @project.issues.find(params[:id]) if @project
+  end
+
+  def set_user
+    # if params[:user_id]
+      # @user = User.find(params[:user_id])
+      @user = current_user
+      pp "^^^^^^^^^Setting user. It is #{@user.firstname}"
+      pp @project
+    # end
   end
 
   def set_project

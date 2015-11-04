@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :issues
+  resources :issues, except: :new
+
   resources :projects
   resources :users
   root 'users#index'

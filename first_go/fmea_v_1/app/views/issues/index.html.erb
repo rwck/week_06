@@ -26,8 +26,21 @@
   <thead>
     <tbody>
       <% @issues.each do |issue| %>
+
       <th>Item</th>
       <td><%= issue.item %></td>
+      <tr>
+        <th>Project Owner</th>
+        <td>
+          <%= @user.firstname %>
+          <%= @user.lastname %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Project Name</th>
+        <td><%= issue.project.name %></td>
+      </tr>
 
       <tr>
         <th>Function</th>
@@ -96,12 +109,6 @@
         <th>Further investigation</th>
         <td><%= issue.further_investigation %></td>
       </tr>
-      <tr>
-        <th>Project</th>
-
-        <td><%= issue.project.name %></td>
-
-      </tr>
 
       <tr>
         <th colspan="3"></th>
@@ -120,4 +127,6 @@
     <%= @my_variable  %>
   </p>
 
+  <% if false %>
   <%= link_to 'New Issue', new_issue_path %>
+  <% end %>

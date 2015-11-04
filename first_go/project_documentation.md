@@ -329,3 +329,16 @@ rails generate devise:views
 ```
 
 # Restart the Rails server after installing Devise. Otherwise you spend ages not understanding why none of it works.
+
+
+## Get rails server to run on a different port
+
+`rails server -p 3050`
+
+# Get rid of old things you don't want in the schema any more
+
+* Create a migration to get rid of them
+
+## Use your seed file to populate the database
+
+`rakd db:seed`

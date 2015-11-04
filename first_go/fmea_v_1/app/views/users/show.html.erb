@@ -36,6 +36,26 @@
 
   </p>
 
+  <p>
+    User ID is
+    <%= @user.id%>
+  </p>
+
+  <% if Project.where("user_id": @user.id) != [] %>
+  <h2>
+    Projects owned by
+    <%= @user.firstname %>
+    <%= @user.lastname %>
+  </h2>
+  <% else %>
+  <h2>
+    Create a project
+  </h2>
+
+  <%= link_to "Create a new project", new_project_issue_path(@project) %>
+
+  <% end %>
+
   <!-- <p>
   <strong>Firstname:</strong>
   <%= @user.firstname %>
