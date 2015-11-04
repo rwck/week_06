@@ -18,23 +18,18 @@
 </div>
 
 <% if false %>
-
 <div class="field">
-
   <%= f.label :user_id %><br>
   <%= f.text_field :user_id %>
-
   <% pp "params are " + params.to_s %>
 </div>
-
 <% end %>
 
+<% if false %>
 <div class="field">
   <%= f.label :user_id %><br>
 
-  <% if false %>
   <%= f.text_field :user_id %>
-
   <% end %>
 
   <% if false %>
@@ -51,9 +46,19 @@
   <%= options_from_collection_for_select(User.all, :id, :firstname) %>
   <% end %>
 
+  <% if false %>
   <div>
     <%= select_tag "project[user_id]", options_from_collection_for_select(@users, "id", "firstname", include_blank: true)  %>
   </div>
+  <% end %>
+  <% if false %>
+  <div>
+    Owner of project is:
+    <%= current_user.firstname %>
+    <%= params[:owner] %>
+  </div>
+  <%= f.hidden_field :user_id %>
+  <% end %>
 
   <% pp "params are " + params.to_s %>
 </div>

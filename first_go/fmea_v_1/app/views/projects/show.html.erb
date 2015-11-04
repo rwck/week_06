@@ -21,18 +21,19 @@
 </p>
 
 <p>
-  <strong>Proejct ID:</strong>
+  <strong>Project ID:</strong>
   <%= @project.id %>
 </p>
 
 <% if Issue.where("project_id": @project.id) != [] %>
 <h2>
-  Issues within
+  Issues within Project:
   <%= @project.name %>
 </h2>
 <% else %>
 <h2>
-  Add some issues
+  Add some issues for Project:
+  <%= @project.name %>
 </h2>
 
 <%= link_to "Register a new issue", new_project_issue_path(@project) %>

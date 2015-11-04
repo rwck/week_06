@@ -1,0 +1,6 @@
+<% if current_user.admin %>
+
+<%= link_to 'Edit', edit_issue_path(@issue) %>
+|
+<% end %>
+<%= link_to 'Back', issues_path %>

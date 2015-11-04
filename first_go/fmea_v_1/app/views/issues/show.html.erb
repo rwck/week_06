@@ -1,6 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>
+    Project:
+  </strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Issue owner:</strong>
+  <%= @users.find(@projects.find(@issue.project_id).user_id).firstname  %>
+  <%= @users.find(@projects.find(@issue.project_id).user_id).lastname  %>
+</p>
+
+<p>
   <strong>Item:</strong>
   <%= @issue.item %>
 </p>
@@ -73,16 +86,8 @@
   <% end %>
 </p>
 
-<p>
-  <strong>Issue owner:</strong>
-  <%= @users.find(@projects.find(@issue.project_id).user_id).firstname  %>
-  <%= @users.find(@projects.find(@issue.project_id).user_id).lastname  %>
-</p>
-
 <% if false %>
 <%= @issue.project_id %>
 <% end %>
 
-<%= link_to 'Edit', edit_issue_path(@issue) %>
-|
-<%= link_to 'Back', issues_path %>
+<%= render 'issues/shared/links' %>

@@ -16,6 +16,10 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = current_user
+    if signed_in?
+      pp 'user signed in'
+    else pp 'USER NOT SIGNED IN'
+    end
   end
 
   # GET /users/1
@@ -34,15 +38,19 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if !current_user.admin
+      redirect_to :back
+      # you can put in a , status: 404 here too, if you want but that puts you through to a new page with a clickable link.
+    end
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-    pp "user picture " + @user["picture"]
-    if @user["picture"] != nil && @user["picture"] != "" &&  @user["picture"].starts_with?('https://drive.google.com/open?id=')
-      @user["picture"] = link_to_google_image( @user["picture"])
+    pp 'user picture ' + @user['picture']
+    if !@user['picture'].nil? && @user['picture'] != '' && @user['picture'].starts_with?('https://drive.google.com/open?id=')
+      @user['picture'] = link_to_google_image(@user['picture'])
     end
 
     respond_to do |format|
@@ -64,27 +72,28 @@ class UsersController < ApplicationController
   def update
     # @user = User.new(user_params)
     # pp "user picture " + @user["picture"]
-    pp @user["picture"]
-    if @user["picture"] != nil && @user["picture"] != "" &&  @user["picture"].starts_with?('https://drive.google.com/open?id=')
-      @user["picture"] = link_to_google_image( @user["picture"])
+
+    pp @user['picture']
+    if !@user['picture'].nil? && @user['picture'] != '' && @user['picture'].starts_with?('https://drive.google.com/open?id=')
+      @user['picture'] = link_to_google_image(@user['picture'])
     end
-
-
 
     pp @user.picture
+    if current_user.admin
+      pp 'CURREOULKJF LJD FLKJSD FLJ'
 
-
-
-
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
+
     end
+    # end
   end
 
   # DELETE /users/1
@@ -121,6 +130,7 @@ class UsersController < ApplicationController
     # @user["picture"]
     params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :picture, :phone)
     end
+
   def picture_param
     params.require(:user).permit(:picture)
   end

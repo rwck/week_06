@@ -69,7 +69,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = @user.projects.find(params[:id])
+    # @project = @user.projects.find(params[:id])
+    # @project = set_project
 
 
 
@@ -99,6 +100,8 @@ class ProjectsController < ApplicationController
   def create
     # @issue = @project.issues.build(issue_params)
     @project = @user.projects.build(project_params)
+    # the @user bit above ensures that the new project will be owned by the user. You don't need to pass the user id around beyond what that bit does for you anyway.
+    # pp "*****" + project_params.to_s
 
 
     # @project = Project.new(project_params)
@@ -142,7 +145,9 @@ class ProjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = @user.projects.find(params[:user_id]) if @project
+    # @project = @user.projects.find(params[:user_id]) if @project
+    @project = @user.projects.find(params[:id])
+
   end
 
 
@@ -157,6 +162,7 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:name, :user_id)
+    params.require(:project).permit(:name)
+    # , :user_id)
   end
 end

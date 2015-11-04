@@ -36,7 +36,9 @@ class IssuesController < ApplicationController
 
   # GET /issues/new
   def new
+    # if @project != nil
     @issue = @project.issues.build
+  # end
 
     #
     # @issue = Issue.new
@@ -100,18 +102,24 @@ class IssuesController < ApplicationController
 
   def set_user
     # if params[:user_id]
-      # @user = User.find(params[:user_id])
-      @user = current_user
-      pp "^^^^^^^^^Setting user. It is #{@user.firstname}"
-      pp @project
+    # @user = User.find(params[:user_id])
+    @user = current_user
+    pp "^^^^^^^^^Setting user. It is #{@user.firstname}"
+    pp @project
     # end
   end
 
   def set_project
     if params[:project_id]
-      @project =
-      Project.find(params[:project_id])
+      @project = @user.projects.find(params[:project_id])
+    else
+      @message = "You have no issues. That's great. \nCreate a project and then you can register some."
     end
+
+    # if params[:project_id]
+    #   @project =
+    #   Project.find(params[:project_id])
+    # end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

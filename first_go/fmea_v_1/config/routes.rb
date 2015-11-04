@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+  # root 'users/sign_up'
+  # root 'users#index'
+
   devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root 'users#index'
+      # destroy_user_session_path, 'devise/sessions#destroy'
+      # delete 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+    end
+    unauthenticated :user do
+      root 'devise/registrations#new', as: :unauthenticated_root
+    end
+  end
+
+  resources :users
+
   resources :issues, except: :new
 
   resources :projects
-  resources :users
-  root 'users#index'
 
   resources :projects do
     resources :issues

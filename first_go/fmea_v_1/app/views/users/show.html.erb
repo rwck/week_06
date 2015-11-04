@@ -4,11 +4,13 @@
 
   <p>
     <!-- <strong>Firstname:</strong> -->
+    <% if @user.firstname && @user.lastname %>
     <%= @user.firstname %>
 
     <!-- <strong>Lastname:</strong> -->
     <%= @user.lastname %>
     |
+    <% end %>
 
     <%= @user.email %>
   </p>
@@ -40,7 +42,7 @@
     User ID is
     <%= @user.id%>
   </p>
-
+  <% if current_user.id == @user.id %>
   <% if Project.where("user_id": @user.id) != [] %>
   <h2>
     Projects owned by
@@ -48,13 +50,27 @@
     <%= @user.lastname %>
   </h2>
   <% else %>
-  <h2>
-    Create a project
-  </h2>
-
-  <%= link_to "Create a new project", new_project_issue_path(@project) %>
 
   <% end %>
+  <% end %>
+
+  <h2>
+    <% if current_user.firstname %>
+    Come on,
+    <%= current_user.firstname %>!
+    <br>
+    It's time to create a project of your own.
+    <% else %>
+    It would be great if you could fill in some more of your profile. Click
+    <%= link_to "here", edit_user_path, class: "link" %>
+    to do that.
+    <% end %>
+  </h2>
+
+  <%= link_to "Create a new project", new_project_path %>
+
+  <!--
+(:owner => @user.id) -->
 
   <!-- <p>
   <strong>Firstname:</strong>
@@ -82,11 +98,7 @@
     <%= @user.phone %>
   </p>
   <% end %>
-  <div class="link">
-    <%= link_to 'Edit', edit_user_path(@user) %>
-    |
-    <%= link_to 'Back', users_path %>
 
-  </div>
+  <%= render 'users/shared/links' %>
 
 </div>

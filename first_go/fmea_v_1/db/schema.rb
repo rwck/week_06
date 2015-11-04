@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104015315) do
+ActiveRecord::Schema.define(version: 20151104100730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "issues", force: :cascade do |t|
-    t.string   "item"
+    t.string   "item",                      null: false
     t.string   "function"
     t.string   "failure"
     t.string   "effect_of_failure"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20151104015315) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.boolean  "admin",                  default: false
+    t.boolean  "admin",                  default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

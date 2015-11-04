@@ -20,46 +20,42 @@ $my-base-font-family: 'Raleway', sans-serif;
 @mixin basic-style {
   font-style: $my-base-font-family;
   font-size: 1em;
-  padding: 2em;
+  padding: 0.5em;
 }
 
 p {
   font-family: $my-base-font-family;
 }
 
-// body {
-//   @include basic-style;
-//   font-style: $my-base-font-family;
-// }
-//
-// p {
-//   @extend body;
-//   font-style: $my-base-font-family;
-//
-// }
+.edge-right {
+  font-family: $my-base-font-family;
+  float: right;
+}
 
 .basic-style {
   @include basic-style;
 }
 
-p {
-}
-
 th {
   font-family: $my-heading-font-family;
+  padding: 0.5em;
+  text-align: left;
 }
 
 td {
   @extend .basic-style;
   font-family: $my-base-font-family
-
 }
 
 h1 {
   font-family: $my-heading-font-family;
   font-size: 1.5em;
   padding: 0.5em 0;
+}
 
+h2 {
+  @extend h1;
+  font-size: 1.2em;
 }
 
 a {

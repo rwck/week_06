@@ -10,7 +10,12 @@
       <th>Lastname</th>
       <th>Email</th>
       <!-- <th>Phone</th> -->
+      <% if current_user.admin %>
       <th colspan="3"></th>
+      <% else %>
+      <th colspan="1"></th>
+      <% end %>
+
     </tr>
   </thead>
 
@@ -25,8 +30,14 @@
       <td><%= user.phone %></td>
       <% end %> -->
       <td><%= link_to 'Show', user %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+
+      <% if current_user.admin %>
+      <td>
+        <%= link_to 'Edit', edit_user_path(user) %>
+      </td>
+
       <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
@@ -34,6 +45,9 @@
 
 <br>
 
+<% if false %>
 <% if @user.admin %>
 <%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_registration_path %>
+<% end %>
 <% end %>

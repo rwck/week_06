@@ -1,3 +1,36 @@
 label {
   font-family: $my-base-font-family;
+  margin: 0.5em, 0;
+  padding: 0;
+}
+
+.field {
+  padding: 1.5em;
+}
+
+input {
+  min-width: 80%;
+  margin: 0 auto;
+  // text-align: center;
+}
+
+input[type=text] {
+  padding: 0.5em;
+}
+input[type=email] {
+  padding: 0.5em;
+}
+input[type=password] {
+  padding: 0.5em;
+}
+input[type=number] {
+  padding: 0.5em;
+}
+input[type=submit] {
+  margin-left: 2em;
+  border: 1px dotted black;
+  @include my-box-shadow;
+  background-color: yellow;
+
+
 }

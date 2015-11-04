@@ -11,118 +11,158 @@
         <%= csrf_meta_tags %>
 </head>
 
-<p>
-  <%= current_user %>
-</p>
-<p>
-  <%= user_session %>
-</p>
+<% if signed_in? %>
+  <% end %>
 
-<% if current_user %>
-<p>
-  <%= "Current user is " + current_user.firstname.to_s %>
-</p>
-<p>
-  <%= "User session is " + user_session.to_s  %>
-</p>
-<p>
-  <%= "Current user ID is " + current_user.id.to_s %>
-</p>
-<% end %>
+    <% if false %>
 
+      <p>
+        <%= current_user %>
+      </p>
+      <p>
+        <%= user_session %>
+      </p>
 
+      <% if current_user %>
+        <p>
+          <%= "Current user is " + current_user.firstname.to_s %>
+        </p>
+        <p>
+          <%= "User session is " + user_session.to_s  %>
+        </p>
+        <p>
+          <%= "Current user ID is " + current_user.id.to_s %>
+        </p>
+        <% end %>
 
-<% if user_signed_in? %>
-  <div class="big_message">
-    <h1>
-      Welcome to the FMEA app. Thanks for signing in.
-
-    </h1>
-  </div>
-
-  <% else %>
-    <div>
-      <h1>
-        You're not signed in. Get to it!!!
-      </h1>
-    </div>
-    <% end %>
-
-      <div class="big_nav">
-        <ul>
-          <li>
-            <%= link_to "New user session path", new_user_session_path %>
-
-          </li>
-          <li>
-            <%= link_to "User session path", user_session_path %>
-          </li>
-          <li>
-            <%= link_to "Destroy user session", destroy_user_session_path, method: :DELETE %>
-
-          </li>
-          <li>
-            <%= link_to "User password path",  user_password_path %>
-
-          </li>
-          <li>
-            <%= link_to "New user password path", new_user_password_path %>
-
-          </li>
-          <li>
-            <%= link_to "Edit user password path", edit_user_password_path %>
-
-          </li>
-          <li>
-            <%= link_to "Cancel User registration path",  cancel_user_registration_path %>
-
-          </li>
-          <li>
-            <%= link_to "User registration path", user_registration_path %>
-
-          </li>
-          <li>
-            <%= link_to "New user registration path", new_user_registration_path %>
-
-          </li>
-          <li>
-            <%= link_to "Edit user registration path", edit_user_registration_path %>
-
-          </li>
-          <li>
-
-          </li>
-
-
-        </ul>
-      </div>
-
-      <nav>
-        <%= link_to "Users", users_path %>
-          <%= link_to "Issues", issues_path %>
-            <%= link_to "Projects", projects_path %>
-              <%= link_to "New Project", new_project_path %>
-      </nav>
-
-      <body>
-
-        <% if notice %>
-          <p class="alert alert-success">
-            <%= notice %>
-          </p>
           <% end %>
-            <% if alert %>
-              <p class="alert alert-danger">
-                <%= alert %>
-              </p>
-              <% end %>
 
+            <% if user_signed_in? %>
+              <div class="big_message">
+                <h1>
+                  Welcome to the FMEA app. Thanks for signing in.
 
-                <div class="main basic-style">
-                  <%= yield %>
+                </h1>
+              </div>
+              <div class="nav">
+
+              </div>
+
+              <% else %>
+                <div>
+                  <h1>
+                    You're not signed in. Get to it!!!
+                  </h1>
                 </div>
+                <% end %>
+
+                  <% if false %>
+                    <div class="big_nav">
+                      <ul>
+                        <li>
+                          <%= link_to "New user session path", new_user_session_path %>
+
+                        </li>
+                        <li>
+                          <%= link_to "User session path", user_session_path %>
+                        </li>
+                        <li>
+                          <%= link_to "Destroy user session", destroy_user_session_path, method: :DELETE %>
+
+                        </li>
+                        <li>
+                          <%= link_to "User password path",  user_password_path %>
+                        </li>
+                        <li>
+                          <%= link_to "New user password path", new_user_password_path %>
+
+                        </li>
+                        <li>
+                          <%= link_to "Edit user password path", edit_user_password_path %>
+
+                        </li>
+                        <li>
+                          <%= link_to "Cancel User registration path",  cancel_user_registration_path %>
+
+                        </li>
+                        <li>
+                          <%= link_to "User registration path", user_registration_path %>
+
+                        </li>
+                        <li>
+                          <%= link_to "New user registration path", new_user_registration_path %>
+
+                        </li>
+                        <li>
+                          <%= link_to "Edit user registration path", edit_user_registration_path %>
+
+                        </li>
+                        <li>
+
+                        </li>
 
 
-      </body>
+                      </ul>
+                    </div>
+                    <% end %>
+
+                      <nav>
+                        <% if signed_in? %>
+                          <%= link_to "Users", users_path %>
+                            <%= link_to "Issues", issues_path %>
+                              <%= link_to "Projects", projects_path %>
+                                <%= link_to "New Project", new_project_path %>
+                                  <% end %>
+                                    <% if !user_signed_in? %>
+
+                                      <p>
+                                        Already signed up?
+
+                                        <%= link_to "Sign in", new_user_session_path %>
+                                          <% elsif user_signed_in? %>
+
+                                            <%= link_to "Log out", destroy_user_session_path, method: :DELETE %>
+
+
+
+                                              <% end %>
+
+                                                <% if signed_in? %>
+                                                  <span class="edge-right">
+
+
+
+
+                                                    <%= current_user.firstname %>
+                                                      <%= current_user.lastname %> 
+                                                        <% if current_user.admin %> | You are an admin user
+                                                          <% end %>
+                                                            <%= link_to "Edit profile", edit_user_path(current_user) %>
+
+                                                  </span>
+                                                  <% end %>
+                                      </p>
+                      </nav>
+
+                      <body>
+
+                        <% if notice %>
+                          <p class="alert alert-success">
+                            <%= notice %>
+                          </p>
+                          <% end %>
+                            <% if alert %>
+                              <p class="alert alert-danger">
+                                <%= alert %>
+                              </p>
+                              <% end %>
+
+
+                                <div class="main basic-style">
+                                  <%= yield %>
+                                </div>
+
+
+                      </body>
 
 </html>
