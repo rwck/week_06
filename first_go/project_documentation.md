@@ -1,13 +1,9 @@
 # Project 01: FMEA - notes as we go
-
 ## Initialise a new rails app
-
 `rails new -database=postgresql`
 
 ## Get rails environment set up as you want it
-
 ### Extra gems for extra niceness
-
 `gem 'bcrypt'` for secure login etc
 
 Gemfile (this can all, i think, go in the development group)
@@ -22,11 +18,9 @@ gem 'binding_of_caller'
 gem 'meta_request'
 ```
 
-
 Also for extra convenience
 
 Gemfle (in the development group profile)
-
 
 ```
 group :development do
@@ -34,19 +28,16 @@ group :development do
 end
 ```
 
-Then
-`$ bundle exec guard init`
+Then `$ bundle exec guard init`
 
-
-Then
-`$ bundle exec guard`
+Then `$ bundle exec guard`
 
 And then
+
 ```
 group :development do
   gem 'guard-livereload', '~> 2.4', require: false
 end
-
 ```
 
 and then
@@ -54,12 +45,9 @@ and then
 `$ guard init livereload`
 
 ## Generate a scaffold to get started
-
 `rails generate scaffold user firstname lastname email:uniq password:digest picture phone`
 
-
 ## Create a migration for the database
-
 `rails generate migration EditUserTable`
 
 `rake db:migrate`
@@ -95,9 +83,7 @@ def create
     pp picture_param
     pp link_to_google_image(picture_param["picture"])
   end
-
 ```
-
 
 ### Reset CSS
 
@@ -120,45 +106,41 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
-
 ```
 
 # Using SASS & SCSS
 ## Partials
-
-name the file '\_partial.scss'
-then make 'application.css' into 'application.scss'
-and do
+name the file '_partial.scss' then make 'application.css' into 'application.scss' and do
 
 `@import 'partial.scss'`
 
@@ -170,12 +152,7 @@ or
 
 `@import 'partials/**/*'`
 
-
-
-
 ## How to use Google fonts in Rails
-
-
 In applicaition.html.erb
 
 At the top use the `stylesheet_link_tag`
@@ -190,14 +167,13 @@ At the top use the `stylesheet_link_tag`
 rails generate scaffold project name user:belongs_to
 ```
 
-
 # Model for Issue
 
 ```
 rails generate scaffold issue item function failure effect_of_failure cause_of_failure current_controls recommended_actions probability_estimate:integer severity_estimate:integer detection_indicators:integer detection_dormancy_period:integer risk_level:integer further_investigation project:belongs_to --parent-user
 ```
 
-### Drop tables
+## Drop tables
 
 ```
 class DroppingTables < ActiveRecord::Migration
@@ -208,10 +184,6 @@ class DroppingTables < ActiveRecord::Migration
 end
 ```
 
-
-
-
-
 ## Command to add 'Problem' reference to existing 'Issue' table
 
 ```
@@ -221,6 +193,7 @@ rails generate migration AddProblemRefToIssues problem:references
 ## The model for 'Problem'
 
 ```
+
 ```
 
 ## Drop table from database
@@ -229,52 +202,37 @@ rails generate migration AddProblemRefToIssues problem:references
 drop_table :issues
 ```
 
-
-
 ## Add connection
+
 ```
 add_reference :issues, :problem, index: true, foreign_key: true
 ```
-
-
-
 
 ## Remove connection
+
 ```
 add_reference :issues, :problem, index: true, foreign_key: true
 ```
-
-
 
 Creating a relationship:
 
 You need to do this inside the model, not inside the migration.
 
-
 ## Active Record
-
 `Project.where("user_id = 11")`
 
-
 ### update column in code
-
 `.update_column :blob, <value>`
 
-
 ## heroku run rails console
-
 `heroku run rake db:migrate`
 
 `heroku run rails console`
 
 loads of other things like this : this is really really useful
 
-
 ## Seed dump
-
 `gem 'seed_dump'`
-
-
 
 First, do
 
@@ -284,8 +242,6 @@ And then do:
 
 `rake db:seed:dump`
 
-
-
 Trying to send some info through along with a link...
 
 ```
@@ -293,18 +249,13 @@ link_to "Profile", profile_path(@profile.id, param1: 'value1', param2: 'value2')
 s
 ```
 
-
 ## Get guard to work and check up, reload rails server on key file changes
-
 `bundle exec guard`
 
 ## Active record find by cross reference
-
 `Issue.find_by project_id: 1`
 
-
 # Devise
-
 `gem 'devise'`
 
 Then
@@ -312,7 +263,6 @@ Then
 `rails g devise:install`
 
 `rails generate devise User`
-
 
 ## In config/environments/development.rb do
 
@@ -322,23 +272,18 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 The code above is telling rails what to do when it comes to sending email links - where to put the link to, basically.
 
-
 # Updating devise views
+
 ```
 rails generate devise:views
 ```
 
 # Restart the Rails server after installing Devise. Otherwise you spend ages not understanding why none of it works.
-
-
 ## Get rails server to run on a different port
-
 `rails server -p 3050`
 
 # Get rid of old things you don't want in the schema any more
-
-* Create a migration to get rid of them
+- Create a migration to get rid of them
 
 ## Use your seed file to populate the database
-
 `rakd db:seed`
