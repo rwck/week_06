@@ -25,10 +25,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = set_user
+    # @user = set_user
     @projects = @user.projects
     pp @user.firstname
-    pp @projects
+    # pp @projects
   end
 
   # GET /users/new
@@ -38,17 +38,24 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    if !current_user.admin
-      redirect_to :back
-      # you can put in a , status: 404 here too, if you want but that puts you through to a new page with a clickable link.
+    pp "Params are " + params[:id].to_s
+    pp "Current user ID is " + current_user.id.to_s
+    if params[:id].to_i == current_user.id
+      puts "Yaroo"
+    else puts "Baroo"
     end
+    # if !current_user.admin && current_user.id != params[:id].to_i
+    #   puts "Why isn't this working"
+    #   redirect_to :back
+    #   # you can put in a , status: 404 here too, if you want but that puts you through to a new page with a clickable link.
+    # end
   end
 
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-    pp 'user picture ' + @user['picture']
+    # @user = User.new(user_params)
+    # pp 'user picture ' + @user['picture']
     if !@user['picture'].nil? && @user['picture'] != '' && @user['picture'].starts_with?('https://drive.google.com/open?id=')
       @user['picture'] = link_to_google_image(@user['picture'])
     end
@@ -72,15 +79,15 @@ class UsersController < ApplicationController
   def update
     # @user = User.new(user_params)
     # pp "user picture " + @user["picture"]
-
     pp @user['picture']
     if !@user['picture'].nil? && @user['picture'] != '' && @user['picture'].starts_with?('https://drive.google.com/open?id=')
       @user['picture'] = link_to_google_image(@user['picture'])
     end
-
     pp @user.picture
-    if current_user.admin
+
+    # if current_user.admin || current_user.id == params[:id].to_i
       pp 'CURREOULKJF LJD FLKJSD FLJ'
+      # if params[:id].to_i == current_user.id
 
       respond_to do |format|
         if @user.update(user_params)
@@ -91,9 +98,6 @@ class UsersController < ApplicationController
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-
-    end
-    # end
   end
 
   # DELETE /users/1

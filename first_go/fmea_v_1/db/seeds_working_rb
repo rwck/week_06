@@ -1,0 +1,18 @@
+User.create!([
+  {email: "a@a.com", picture: "https://www.themonthly.com.au/sites/default/files/AbbottSquare.jpg", phone: "", firstname: "Tony", lastname: "Abbott", full_name: nil, password: "a", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2015-11-04 14:47:37", last_sign_in_at: "2015-11-04 14:38:14", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: false},
+  {email: "rwckdw@gmail.com", picture: "http://ecx.images-amazon.com/images/I/41laHZoMs4L.jpg", phone: "", firstname: "Sarah", lastname: "Palin", full_name: nil, password: "a", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 20, current_sign_in_at: "2015-11-05 12:30:05", last_sign_in_at: "2015-11-05 11:33:58", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: true},
+  {email: "barr@cooda.com", picture: "", phone: "", firstname: "Barra", lastname: "Yarra", full_name: nil, password: "a", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-05 04:22:03", last_sign_in_at: "2015-11-05 04:22:03", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: false},
+  {email: "goofy@goofy.com", picture: "http://www.cliparthut.com/clip-arts/185/disney-goofy-face-clip-art-185451.png", phone: "", firstname: "Goofy", lastname: "Doofy", full_name: nil, password: "a", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-04 10:45:22", last_sign_in_at: "2015-11-04 10:45:22", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: false},
+  {email: "blob@blob.blob", picture: "http://www.theage.com.au/content/dam/images/g/j/n/6/c/r/image.related.articleLeadNarrow.300x0.gjmv1w.png/1442890478901.jpg", phone: "asas", firstname: "Malcolm", lastname: "Turnbull", full_name: nil, password: "a", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 4, current_sign_in_at: "2015-11-04 14:21:17", last_sign_in_at: "2015-11-04 13:45:23", current_sign_in_ip: "::1", last_sign_in_ip: "::1", admin: false}
+])
+Project.create!([
+  {name: "fdf", user_id: 2},
+  {name: "dfd", user_id: 2},
+  {name: "Sarah's project", user_id: 1},
+  {name: "Bob", user_id: 1},
+  {name: "", user_id: 1},
+  {name: "", user_id: 1},
+  {name: "", user_id: 1},
+  {name: "asdfasdf", user_id: 1},
+  {name: "", user_id: 1}
+])

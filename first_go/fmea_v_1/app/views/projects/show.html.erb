@@ -1,21 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Project name:</strong>
   <%= @project.name %>
 </p>
 
 <p>
-  <strong>User Object ID:</strong>
-  <%= @project.user %>
-  <% if false %>
-  <%= @project.user.firstname %>
-  <%= @project.user.lastname %>
-  <% end %>
-
-</p>
-<p>
-  <strong>User Name:</strong>
+  <strong>Project owner:</strong>
   <%= @project.user.firstname %>
   <%= @project.user.lastname %>
 </p>
@@ -30,33 +21,32 @@
   Issues within Project:
   <%= @project.name %>
 </h2>
-<% else %>
-<h2>
-  Add some issues for Project:
-  <%= @project.name %>
-</h2>
 
-<%= link_to "Register a new issue", new_project_issue_path(@project) %>
+<% else %>
+
+<h1>
+  Project:
+  <%= @project.name %>
+  is just getting underway
+</h1>
+
+<div class="message-to-user">
+  Add some
+  <%= link_to "issues", new_project_issue_path(@project) %>
+  to
+  <%= @project.name %>
+</div>
 
 <% end %>
 
-<p>
-  <% Issue.where("project_id": @project.id).find_each do |issue| %>
-  <% if issue[:item] != "" %>
-
-  <p>
-    <%= issue[:item] %>
-  </p>
-  <% end %>
-  <% end %>
-
-</p>
+<% Issue.where("project_id": @project.id).find_each do |issue| %>
+<% if issue[:item] != "" %>
 
 <p>
-  <% if false %>
-  <%= @project.find(@project.user.id) %>
-  <% end %>
+  <%= issue[:item] %>
 </p>
+<% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %>
 |

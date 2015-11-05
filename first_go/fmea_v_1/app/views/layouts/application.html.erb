@@ -3,166 +3,125 @@
 
 <head>
   <title>FmeaV1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-    <%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Raleway:400,600|Bitter:400,700', media: 'all' %>
+    <%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Raleway:400,600|Bitter:400,700|Cutive+Mono', media: 'all' %>
+
+
+      <link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
 
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
         <%= csrf_meta_tags %>
 </head>
 
-<% if signed_in? %>
-  <% end %>
+<body>
+  <div class="main-container">
+    <div class="edge">
 
-    <% if false %>
+      <% if !signed_in? && controller_name != 'registrations'%>
 
-      <p>
-        <%= current_user %>
-      </p>
-      <p>
-        <%= user_session %>
-      </p>
+        <div class="edge-left">
+          Don't have an account?
+          <%= link_to "Sign up", new_user_registration_path %>
+        </div>
 
-      <% if current_user %>
-        <p>
-          <%= "Current user is " + current_user.firstname.to_s %>
-        </p>
-        <p>
-          <%= "User session is " + user_session.to_s  %>
-        </p>
-        <p>
-          <%= "Current user ID is " + current_user.id.to_s %>
-        </p>
         <% end %>
 
+          <% if !user_signed_in? && controller_name != 'sessions' %>
+          <div class="edge-right">
+            Already signed up?
+            <%= link_to "Log in", new_user_session_path %>
+          </div>
           <% end %>
 
+
+
             <% if user_signed_in? %>
-              <div class="big_message">
-                <h1>
-                  Welcome to the FMEA app. Thanks for signing in.
 
-                </h1>
-              </div>
-              <div class="nav">
-
-              </div>
-
-              <% else %>
-                <div>
-                  <h1>
-                    You're not signed in. Get to it!!!
-                  </h1>
-                </div>
-                <% end %>
-
-                  <% if false %>
-                    <div class="big_nav">
-                      <ul>
-                        <li>
-                          <%= link_to "New user session path", new_user_session_path %>
-
-                        </li>
-                        <li>
-                          <%= link_to "User session path", user_session_path %>
-                        </li>
-                        <li>
-                          <%= link_to "Destroy user session", destroy_user_session_path, method: :DELETE %>
-
-                        </li>
-                        <li>
-                          <%= link_to "User password path",  user_password_path %>
-                        </li>
-                        <li>
-                          <%= link_to "New user password path", new_user_password_path %>
-
-                        </li>
-                        <li>
-                          <%= link_to "Edit user password path", edit_user_password_path %>
-
-                        </li>
-                        <li>
-                          <%= link_to "Cancel User registration path",  cancel_user_registration_path %>
-
-                        </li>
-                        <li>
-                          <%= link_to "User registration path", user_registration_path %>
-
-                        </li>
-                        <li>
-                          <%= link_to "New user registration path", new_user_registration_path %>
-
-                        </li>
-                        <li>
-                          <%= link_to "Edit user registration path", edit_user_registration_path %>
-
-                        </li>
-                        <li>
-
-                        </li>
+              <span class="edge-left">
 
 
-                      </ul>
+
+
+                <%= current_user.firstname %>
+                  <%= current_user.lastname %>
+                    <% if current_user.admin %> | You are an admin user
+                      <% end %>
+                        <%= link_to "Edit profile", edit_user_path(current_user) %>
+
+              </span>
+
+              <span class="edge-right">
+
+                <%= link_to "Log out", destroy_user_session_path, method: :DELETE %>
+              </span>
+              <% end %>
+    </div>
+
+
+    <div class="main-heading">
+      <% if false %>
+        <% if user_signed_in? %>
+          <h1>
+            Welcome to the FMEA app. Thanks for signing in.
+          </h1>
+          <% else %>
+
+            <h1>
+              You're not signed in. Get to it!!!
+            </h1>
+            <% end %>
+              <% end %>
+
+
+                <% if controller_name == "registrations" %>
+                  <div class="roll-up">
+                    <h1>SIGN UP</h1>
+                  </div>
+                  <% elsif controller_name == "sessions" %>
+                    <div class="roll-up">
+                      <h1>LOG IN</h1>
                     </div>
+
+
+
                     <% end %>
-
-                      <nav>
-                        <% if signed_in? %>
-                          <%= link_to "Users", users_path %>
-                            <%= link_to "Issues", issues_path %>
-                              <%= link_to "Projects", projects_path %>
-                                <%= link_to "New Project", new_project_path %>
-                                  <% end %>
-                                    <% if !user_signed_in? %>
-
-                                      <p>
-                                        Already signed up?
-
-                                        <%= link_to "Sign in", new_user_session_path %>
-                                          <% elsif user_signed_in? %>
-
-                                            <%= link_to "Log out", destroy_user_session_path, method: :DELETE %>
+    </div>
 
 
-
-                                              <% end %>
-
-                                                <% if signed_in? %>
-                                                  <span class="edge-right">
+    <div class="nav">
+      <% if signed_in? %>
+        <%= link_to "Users", users_path %>
+          <%= link_to "Issues", issues_path %>
+            <%= link_to "Projects", projects_path %>
+              <%= link_to "New Project", new_project_path %>
+                <% end %>
+    </div>
 
 
 
 
-                                                    <%= current_user.firstname %>
-                                                      <%= current_user.lastname %> 
-                                                        <% if current_user.admin %> | You are an admin user
-                                                          <% end %>
-                                                            <%= link_to "Edit profile", edit_user_path(current_user) %>
 
-                                                  </span>
-                                                  <% end %>
-                                      </p>
-                      </nav>
-
-                      <body>
-
-                        <% if notice %>
-                          <p class="alert alert-success">
-                            <%= notice %>
-                          </p>
-                          <% end %>
-                            <% if alert %>
-                              <p class="alert alert-danger">
-                                <%= alert %>
-                              </p>
-                              <% end %>
+    <% if false %>
+      <% if notice %>
+        <p class="alert alert-success">
+          <%= notice %>
+        </p>
+        <% end %>
+          <% if alert %>
+            <p class="alert alert-danger">
+              <%= alert %>
+            </p>
+            <% end %>
+              <% end %>
 
 
-                                <div class="main basic-style">
-                                  <%= yield %>
-                                </div>
+                <div class="main basic-style">
+                  <%= yield %>
+                </div>
 
-
-                      </body>
+  </div>
+</body>
 
 </html>

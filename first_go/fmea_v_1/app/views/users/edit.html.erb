@@ -1,6 +1,19 @@
-<h1>Editing User</h1>
+<% if @user.admin %>
+
+<h1>Editing User Profile</h1>
+
+<% elsif @user %>
+
+<h1>Editing your profile
+  <% if @user.firstname %>
+  <%= @user.firstname %>
+  <% end %>
+</h1>
+
+<% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
+<%= link_to 'Show', @user %>
+|
 <%= link_to 'Back', users_path %>

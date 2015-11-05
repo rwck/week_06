@@ -19,14 +19,11 @@ class IssuesController < ApplicationController
     end
     end
 
-  # @my_variable = @issues.find(1).severity_estimate * @issues.find(1).detection_indicators * @issues.find(1).detection_dormancy_period
-  # @issues.find(1).update_column :risk_level, @my_variable
-  # # @my_variable.update_column :
-
   # GET /issues/1
   # GET /issues/1.json
   def show
     @issues = @user.issues
+    pp @issues
     @issue = set_issue
 
     # @issues = Issue.all
@@ -52,6 +49,7 @@ class IssuesController < ApplicationController
 
   # POST /issues
   # POST /issues.json
+
   def create
     pp params
     pp @project
@@ -97,7 +95,9 @@ class IssuesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_issue
-    @issue = @project.issues.find(params[:id]) if @project
+    @issue = Issue.find(params[:id])
+
+    # @issue = @project.issues.find(params[:id])
   end
 
   def set_user

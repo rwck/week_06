@@ -16,61 +16,47 @@
 <%= f.hidden_field :project_id %>
 
 <div class="field">
-  <%= f.label :item %><br>
-  <%= f.text_field :item %>
+  <%= f.text_field :item, placeholder: "item" %>
 </div>
 <div class="field">
-  <%= f.label :function %><br>
-  <%= f.text_field :function %>
+  <%= f.text_field :function, placeholder: "function" %>
 </div>
 <div class="field">
-  <%= f.label :failure %><br>
-  <%= f.text_field :failure %>
+  <%= f.text_field :failure, placeholder: "failure" %>
 </div>
 <div class="field">
-  <%= f.label :effect_of_failure %><br>
-  <%= f.text_field :effect_of_failure %>
+  <%= f.text_field :effect_of_failure, placeholder: "effect of failure" %>
 </div>
 <div class="field">
-  <%= f.label :cause_of_failure %><br>
-  <%= f.text_field :cause_of_failure %>
+  <%= f.text_field :cause_of_failure, placeholder: "cause of failure" %>
 </div>
 <div class="field">
-  <%= f.label :current_controls %><br>
-  <%= f.text_field :current_controls %>
+  <%= f.text_field :current_controls, placeholder: "current controls" %>
 </div>
 <div class="field">
-  <%= f.label :recommended_actions %><br>
-  <%= f.text_field :recommended_actions %>
+  <%= f.text_field :recommended_actions, placeholder: "recommended actions" %>
 </div>
 <div class="field">
-  <%= f.label :probability_estimate %><br>
-  <%= f.number_field :probability_estimate %>
+  <%= f.number_field :probability_estimate, placeholder: "probability estimate" %>
 </div>
 <div class="field">
-  <%= f.label :severity_estimate %><br>
-  <%= f.number_field :severity_estimate %>
+  <%= f.number_field :severity_estimate, placeholder: "severity estimate" %>
 </div>
 <div class="field">
-  <%= f.label :detection_indicators %><br>
-  <%= f.number_field :detection_indicators %>
+  <%= f.number_field :detection_indicators, placeholder: "detection indicators" %>
 </div>
 <div class="field">
-  <%= f.label :detection_dormancy_period %><br>
-  <%= f.number_field :detection_dormancy_period %>
+  <%= f.number_field :detection_dormancy_period, placeholder: "detection dormancy period" %>
 </div>
 <div class="field">
-  <%= f.label :risk_level %><br>
-  <%= f.number_field :risk_level %>
+  <%= f.number_field :risk_level, placeholder: "risk level" %>
 </div>
 <div class="field">
-  <%= f.label :further_investigation %><br>
-  <%= f.text_field :further_investigation, placeholder: :further_investigation %>
+  <%= f.text_field :further_investigation, placeholder: "further investigation" %>
 </div>
 
 <% if false %>
 <div class="field">
-  <%= f.label :project_id %><br>
   <%= f.text_field :project_id %>
 </div>
 <% end %>

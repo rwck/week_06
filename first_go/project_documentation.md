@@ -354,3 +354,8 @@ rails generate devise:views
 `rake db:seed`
 
 You can't do seeding (easily, at least) if you're using Devise
+
+
+
+## Responsive stuff to fix width of page etc
+`<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">`

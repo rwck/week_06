@@ -43,7 +43,7 @@
     <%= @user.id%>
   </p>
   <% if current_user.id == @user.id %>
-  <% if Project.where("user_id": @user.id) != [] %>
+  <% if @user.projects != [] %>
   <h2>
     Projects owned by
     <%= @user.firstname %>

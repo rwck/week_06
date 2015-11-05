@@ -14,32 +14,25 @@
 <fieldset>
 
   <div class="field">
-    <%= f.label :firstname %><br>
-    <%= f.text_field :firstname %>
+    <%= f.text_field :firstname, placeholder: "first name" %>
   </div>
   <div class="field">
-    <%= f.label :lastname %><br>
-    <%= f.text_field :lastname %>
+    <%= f.text_field :lastname, placeholder: "last name" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, placeholder: "email" %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "password" %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, placeholder: "repeat password" %>
   </div>
   <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.text_field :picture %>
+    <%= f.text_field :picture, placeholder: "picture url" %>
   </div>
   <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, placeholder: "phone" %>
   </div>
   <div class="actions">
     <%= f.submit %>
