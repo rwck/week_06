@@ -359,3 +359,11 @@ You can't do seeding (easily, at least) if you're using Devise
 
 ## Responsive stuff to fix width of page etc
 `<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">`
+
+
+
+# Removing Turbolinks from Rails 4 APP_SECRET
+
+  1. Remove `turbolinks` from Gemfile
+  2. Remove the line `//=require turbolinks` from `app/assets/javascripts/application.js`
+  3. Remove the two `"data-turbolinks-track" => true` hash key/value pairs from your `app/views/layouts/application.html.erb` file.
